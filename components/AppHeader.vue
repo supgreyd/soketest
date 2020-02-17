@@ -126,7 +126,7 @@
                     .then(res => {
                         console.log('login success', {res})
                         const userId = res.user.uid
-                        this.addNewUser(userId)
+                        // this.addNewUser(userId)
                         this.toProfile()
                     })
                     .catch(err => {

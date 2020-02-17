@@ -5,15 +5,6 @@
   </v-container>
 </template>
 
-<script>
-
-
-
-export default {
-
-}
-</script>
-
 <style scoped>
   section {
     min-height: 100vh;

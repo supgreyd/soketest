@@ -45,7 +45,22 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    'nuxt-socket-io'
   ],
+
+  io: {
+    sockets: [
+      {
+        name: 'home',
+        url: 'http://localhost:8000/',
+        default: true,
+        // vuex: {
+        //   mutations: [{ user: 'user/SET_USER' }],
+        // }
+      }
+    ]
+  },
+
   /*
   ** Build configuration
   */

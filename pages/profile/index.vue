@@ -22,6 +22,13 @@
         <v-btn text large outlined @click="save">Update data</v-btn>
 
       </v-col>
+      <v-col cols="12" sm="6" md="3">
+        <v-text-field
+          v-model="userMessage"
+          label="Regular"
+        ></v-text-field>
+        <v-btn text @click="sendMessage">send</v-btn>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -35,7 +42,10 @@
         name: "profile",
         data() {
             return {
-              tmpUser: null
+              tmpUser: null,
+                socket: null,
+                userMessage: '',
+                messageRxd: ''
             }
         },
         computed: {
@@ -46,12 +56,26 @@
         methods: {
             save() {
                 db.collection('users').doc(this.tmpUser.id).set(this.tmpUser)
-            }
+            },
+            sendMessage() {
+                let data = {
+                    name: this.user.name,
+                    message: this.userMessage
+                }
+                this.socket.emit('chat message', data)
+            },
         },
         watch: {
             user (val) {
                 this.tmpUser = {...val}
             }
+        },
+        mounted() {
+            this.socket = this.$nuxtSocket({
+                name: 'home',
+                channel: 'home',
+                reconnection: false
+            })
         }
 
     }
