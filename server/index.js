@@ -38,15 +38,22 @@ async function start () {
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })
+
   const nsp = io.of('home')
   nsp.on('connection', (socket) => {
-    console.log(socket.connected)
-    consola.info('socked connected')
+    console.log("socket.connected", socket.id)
+
+    // socket.on('subscribe', function(room) {
+    //   console.log('joining room', room);
+    //   socket.join(room);
+    // })
+
     socket.on('disconnect', () => {
-      consola.info('client disconnected from')
+      consola.info('client disconnected')
     })
     socket.on('chat message', (msg) => {
       console.log({msg})
+      nsp.emit('chat message', msg)
     })
   })
 }

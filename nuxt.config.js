@@ -54,6 +54,9 @@ module.exports = {
         name: 'home',
         url: 'http://localhost:8000/',
         default: true,
+        namespaces: {
+          '/home' : {}
+        }
         // vuex: {
         //   mutations: [{ user: 'user/SET_USER' }],
         // }

@@ -29,6 +29,20 @@
         ></v-text-field>
         <v-btn text @click="sendMessage">send</v-btn>
       </v-col>
+
+      <v-col cols="12" sm="6" md="3">
+        <v-card
+          class="mx-auto"
+          max-width="400"
+          tile
+        >
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title v-for="(message, key) in messages" :key="key">{{ message }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -45,7 +59,8 @@
               tmpUser: null,
                 socket: null,
                 userMessage: '',
-                messageRxd: ''
+                messageRxd: '',
+                messages: []
             }
         },
         computed: {
@@ -75,6 +90,13 @@
                 name: 'home',
                 channel: 'home',
                 reconnection: false
+            })
+
+
+            this.socket.on('chat message', (msg) => {
+                console.log({msg})
+                this.userMessage = ''
+                this.messages.push(msg.message)
             })
         }
 
