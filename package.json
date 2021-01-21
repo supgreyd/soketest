@@ -16,7 +16,7 @@
     "firebase": "^7.8.2",
     "nuxt": "^2.0.0",
     "nuxt-socket-io": "^1.0.18",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.10.3",
